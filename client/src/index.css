@@ -55,6 +55,14 @@
   --secondary: 0 0% 90%;
 
   --secondary-foreground: 222 15% 15%;
+  
+  --success: 142 76% 45%;
+  
+  --success-foreground: 0 0% 98%;
+  
+  --warning: 38 92% 50%;
+  
+  --warning-foreground: 0 0% 98%;
 
   --muted: 217 8% 90%;
 
@@ -173,6 +181,14 @@
   --secondary: 222 15% 20%;
 
   --secondary-foreground: 0 0% 98%;
+  
+  --success: 142 76% 45%;
+  
+  --success-foreground: 0 0% 98%;
+  
+  --warning: 38 92% 50%;
+  
+  --warning-foreground: 0 0% 98%;
 
   --muted: 217 8% 19%;
 

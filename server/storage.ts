@@ -1,37 +1,42 @@
-import { type User, type InsertUser } from "@shared/schema";
+import { type GestureInterpretation, type InsertGestureInterpretation } from "@shared/schema";
 import { randomUUID } from "crypto";
 
-// modify the interface with any CRUD methods
-// you might need
-
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  // Gesture interpretation history
+  saveGestureInterpretation(data: InsertGestureInterpretation): Promise<GestureInterpretation>;
+  getGestureInterpretations(limit?: number): Promise<GestureInterpretation[]>;
+  getGestureInterpretationById(id: string): Promise<GestureInterpretation | undefined>;
 }
 
 export class MemStorage implements IStorage {
-  private users: Map<string, User>;
+  private gestureInterpretations: Map<string, GestureInterpretation>;
 
   constructor() {
-    this.users = new Map();
+    this.gestureInterpretations = new Map();
   }
 
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
-  }
-
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
-  }
-
-  async createUser(insertUser: InsertUser): Promise<User> {
+  async saveGestureInterpretation(
+    data: InsertGestureInterpretation
+  ): Promise<GestureInterpretation> {
     const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+    const interpretation: GestureInterpretation = {
+      ...data,
+      id,
+      timestamp: data.timestamp || Date.now(),
+    };
+    this.gestureInterpretations.set(id, interpretation);
+    return interpretation;
+  }
+
+  async getGestureInterpretations(limit: number = 50): Promise<GestureInterpretation[]> {
+    const all = Array.from(this.gestureInterpretations.values());
+    // Sort by timestamp descending (newest first)
+    all.sort((a, b) => b.timestamp - a.timestamp);
+    return all.slice(0, limit);
+  }
+
+  async getGestureInterpretationById(id: string): Promise<GestureInterpretation | undefined> {
+    return this.gestureInterpretations.get(id);
   }
 }
 
