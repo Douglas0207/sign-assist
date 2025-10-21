@@ -1,0 +1,83 @@
+You are helping me build a full-stack project called “Sign Language AI Assistant – Bridging Communication through AI and Gesture Recognition”.
+
+🧩 Overview:
+This system bridges communication between speech-impaired users and digital devices using sign language. It combines:
+• A webcam for gesture capture
+• A smart glove with flex/finger sensors
+• An Arduino or ESP32 microcontroller
+• A .NET backend for AI logic
+• A React + Vite frontend for the UI
+
+⚙️ Functional Goal:
+The app should recognize hand gestures (from camera + sensors), interpret them through AI, and perform actions or display translated text in real time.  
+For example, if the user signs “Message Robin”, it should interpret that and trigger a sample action like sending or displaying that message.
+
+---
+
+### 💻 Tech Stack
+**Frontend:** React + Vite + Tailwind CSS (make it PWA-ready)
+**Backend:** ASP.NET Core 8.0 (Web API)
+**AI Layer:** OpenAI API for language understanding
+**Hardware:** Arduino/ESP32 + Flex Sensors (via Serial or Bluetooth)
+**Database:** SQLite or PostgreSQL
+**Hosting:** Frontend → Vercel, Backend → Render/Azure
+**Tools:** Replit, Visual Studio, Arduino IDE
+
+---
+
+### 🧱 Project Structure (inside Replit)
+/frontend → React + Vite PWA
+/backend → ASP.NET Core Web API
+/hardware → Arduino code for flex sensors
+
+markdown
+Copy code
+
+---
+
+### 🔧 Core Features to Build
+1. **Frontend (React + Vite)**
+   - Real-time dashboard showing gesture detection results.
+   - Display AI-interpreted text (like “Sending message to Robin…”).
+   - Optional voice output using text-to-speech.
+
+2. **Backend (.NET Web API)**
+   - Endpoint to receive sensor + camera data.
+   - Integrate OpenAI API for contextual understanding.
+   - Return processed command or text output to frontend.
+
+3. **Hardware Module (Arduino/ESP32)**
+   - Read flex sensor values.
+   - Send JSON data via Serial or Bluetooth (e.g. `{ "thumb": 230, "index": 180, ... }`).
+   - Optional: trigger a calibration mode.
+
+4. **AI Integration**
+   - Use OpenAI API to interpret intent (e.g., “open WhatsApp”, “play music”).
+   - Map interpreted commands to functions or sample actions.
+
+5. **End-to-End Flow**
+   - User performs a gesture.
+   - Camera + glove data → backend.
+   - Backend → AI model → interpret → execute.
+   - Frontend → shows or speaks the output.
+
+---
+
+### 📦 Expected Output
+- Working web UI that updates live as gestures are recognized.
+- Backend API endpoints for sensor and AI interaction.
+- Arduino sketch for reading and transmitting flex sensor data.
+- Full integration where gestures translate into text or commands.
+
+---
+
+### 🎯 Goal
+Generate a modular project skeleton that includes:
+- Folder setup for `/frontend`, `/backend`, `/hardware`
+- Boilerplate React app with a simple dashboard
+- ASP.NET backend with placeholder AI routes (`/api/gesture`, `/api/interpret`)
+- Arduino sketch to simulate sensor input (for now)
+- Comments where integration points will go
+
+Keep the code clean, modular, and ready for expansion.  
+I’ll be coding this interactively and connecting each part manually as I progress.
